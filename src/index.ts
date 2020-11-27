@@ -60,6 +60,7 @@ class SmtpMotionPlatform implements DynamicPlatformPlugin {
         stream.on('end', callback);
         session.envelope.rcptTo.forEach((rcptTo) => {
           const name = rcptTo.address.split('@')[0].replace(regex, ' ');
+          log(rcptTo);
           log('[' + name + '] Email received.');
           try {
             http.get('http://127.0.0.1:' + httpPort + '/motion?' + name);
